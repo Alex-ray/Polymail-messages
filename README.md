@@ -13,8 +13,12 @@ This exercise is for you to demonstrate your ability to create a performant Reac
 
 ### Challenge
 
-Create a React app that communicates with mock REST API that allows user to login and view messages in a basic email client interface. It should meet the following requirements:
+Create a React app that communicates with our [mock REST API](https://github.com/polymail/phony), allowing the user to login and view messages in a basic email client interface. It should meet the following requirements:
 
+* User should be able to "login" with either email / password combination provided by the [mock API specs](https://github.com/polymail/phony).
+* Upon successful login, display a list of threads retrieved from the [mock API](https://github.com/polymail/phony) in the left-hand column.
+* When a Thread is selected, it should be displayed in the right-hand pane along with each of its messages.
+* User should be able to "reply" to a thread by composing a message in the bottom-right text area. A reply that is "sent" should appear as a message in the corresponding thread.
 
 ![Login](/Login.png)
 ![Main](/Main.png)
@@ -23,9 +27,10 @@ Create a React app that communicates with mock REST API that allows user to logi
 
 These are not required, but would be great additions if time permits:
 
-* Implement a method to the user's threads and messages
 * Full test coverage
 * Filter the threads from the search input
+* Implement a method to persist all data retrieved from the server (or created by the user)
+* Suggested Technologies (Webpack, React, Redux, React-Router)
 
 ### Let's Get Started!
 
