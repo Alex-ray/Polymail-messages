@@ -16,6 +16,9 @@ This exercise is for you to demonstrate your ability to create a performant Reac
 Create a React app that communicates with mock REST API that allows user to login and view messages in a basic email client interface. It should meet the following requirements:
 
 
+![Login](/Login.png)
+![Main](/Main.png)
+
 ### Bonus Points
 
 These are not required, but would be great additions if time permits:
