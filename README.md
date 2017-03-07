@@ -30,6 +30,7 @@ These are not required, but would be great additions if time permits:
 * Full test coverage
 * Filter the threads from the search input
 * Implement a method to persist all data retrieved from the server (or created by the user)
+* Allow file attachments to be included in a "reply"
 * Suggested Technologies (Webpack, React, Redux, React-Router)
 
 ### Let's Get Started!
