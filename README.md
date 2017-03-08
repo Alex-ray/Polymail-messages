@@ -1,4 +1,4 @@
-# React-Challenge
+# Webapp-Challenge
 
 ## Purpose
 
@@ -34,6 +34,7 @@ These are not required, but would be great additions if time permits:
 * Have search input filter threads
 * Offline cache / support
 * Allow file attachments to be included in a "reply"
+* Make design responsive
 * Suggested Technologies: Webpack, React, Redux, Redux-Observable, React-Router. *Feel free to use what you're familiar with, as you're not expected to know any/all of these technologies*
 
 ## Let's Get Started!
