@@ -1,4 +1,4 @@
-# React-Challenge
+# Webapp-Challenge
 
 ## Purpose
 
@@ -44,6 +44,9 @@ To begin this challenge, please clone this repo and create a Pull Request into t
 
 Not all of the images / icons were included, what should I do?
 * Any missing assets can be improvised.
+
+The API is broken. Help!
+* Feel free to improvise or use a different API.
 
 The challenge requirements seem vague, am I missing something?
 * This challenge is designed to be open-ended, so feel free to be creative in the areas that lack strict guidelines.
