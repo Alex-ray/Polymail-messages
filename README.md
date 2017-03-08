@@ -23,7 +23,7 @@ Create a React app that communicates with our mock RESTful JSON API, allowing th
 ### Resources
 - [Login Mockup](/Login.png) View mockup of Login screen
 - [Main Mockup](/Main.png) View mockup of Main screen
-- [Zeppelin](https://TBD) Export assets and view mockup details such as colors and typography
+- [Zeplin](https://zpl.io/Z1VIEEs) Export assets and view mockup details such as colors, spacing, and typography
 - [API Specs](/api.md) RESTful JSON API specs
 
 ## Bonus Points
