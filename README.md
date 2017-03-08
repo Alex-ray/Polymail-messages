@@ -1,4 +1,4 @@
-# Webapp-Challenge
+# React-Challenge
 
 ## Purpose
 
@@ -23,7 +23,7 @@ Create a React app that communicates with our mock RESTful JSON API, allowing th
 ### Resources
 - [Login Mockup](/Login.png) View mockup of Login screen
 - [Main Mockup](/Main.png) View mockup of Main screen
-- [Zeplin](https://zpl.io/Z1VIEEs) Export assets and view mockup details such as colors, spacing, and typography. You may need to create an account to view the Zeplin mockups. If you haven't received an invitation from us to do so, please let us know.
+- [Zeplin](https://zpl.io/Z1VIEEs) Export assets and view mockup details such as colors, spacing, and typography. You may need to create a Zeplin account. If you haven't received an invitation from us for this, please let us know.
 - [API Specs](/api.md) RESTful JSON API specs
 
 ## Bonus Points
@@ -44,9 +44,6 @@ To begin this challenge, please clone this repo and create a Pull Request into t
 
 Not all of the images / icons were included, what should I do?
 * Any missing assets can be improvised.
-
-The API is broken. Help!
-* Feel free to improvise or use a different API.
 
 The challenge requirements seem vague, am I missing something?
 * This challenge is designed to be open-ended, so feel free to be creative in the areas that lack strict guidelines.
