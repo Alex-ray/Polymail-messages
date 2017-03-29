@@ -3,7 +3,7 @@ import {Route} from 'react-router';
 
 import * as Routes from 'universal/routes/index.js';
 
-class RoutePaths extends Component {
+class Layout extends Component {
   render () {
     return (
       <div>
@@ -13,4 +13,4 @@ class RoutePaths extends Component {
   }
 }
 
-export default RoutePaths;
+export default Layout;

@@ -1,12 +1,17 @@
 import React from 'react';
-import {BrowserRouter} from 'react-router-dom';
+import {render} from 'react-dom';
+import {AppContainer} from 'react-hot-loader';
 
 // Components
-import RoutePaths from 'universal/routes/RoutePaths.js';
+import App from './containers/App.js';
 
 render(
-  <BrowserRouter>
-    <RoutePaths />
-  </BrowserRouter>,
+  <AppContainer>
+    <App />
+  </AppContainer>,
   document.getElementById('root')
 );
+
+if (module.hot) {
+  module.hot.accept();
+}

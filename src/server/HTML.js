@@ -7,7 +7,7 @@ import {renderToString} from 'react-dom/server';
 // import {Provider} from 'react-redux';
 
 // Components
-import RoutePaths from 'universal/routes/RoutePaths.js';
+import Layout from 'universal/routes/Layout.js';
 
 class Html extends Component {
   static propTypes = {
@@ -55,7 +55,7 @@ class Html extends Component {
 
     const root = PROD && renderToString(
       <StaticRouter location={url} context={context}>
-        <RoutePaths />
+        <Layout />
       </StaticRouter>
     );
 
