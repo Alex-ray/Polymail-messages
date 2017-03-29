@@ -1,5 +1,6 @@
 // Node Modules
 import fs from 'fs';
+import {basename, join} from 'path';
 
 // Libraries
 import React from 'react';
