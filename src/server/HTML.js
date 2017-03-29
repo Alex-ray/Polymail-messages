@@ -1,14 +1,20 @@
+// Libraries
 import React, {Component, PropTypes} from 'react';
-import {Provider} from 'react-redux';
-import {RouterContext} from 'react-router';
-import {renderToString} from 'react-dom-stream/server';
+import {StaticRouter} from 'react-router';
+import {renderToString} from 'react-dom/server';
+
+// Redux
+// import {Provider} from 'react-redux';
+
+// Components
+import Router from 'universal/routes/Router.js';
 
 class Html extends Component {
   static propTypes = {
+    url: PropTypes.string.isRequired,
     store: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,
     assets: PropTypes.object,
-    renderProps: PropTypes.object
   }
 
   render () {
@@ -18,7 +24,8 @@ class Html extends Component {
       title,
       store,
       assets,
-      renderProps
+      url,
+      context
     } = this.props;
 
     const {
@@ -27,7 +34,9 @@ class Html extends Component {
       vendor
     } = assets || {};
 
-    const initialState = `window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())}`;
+    let state = {}; //store.getState();
+
+    const initialState = `window.__INITIAL_STATE__ = ${JSON.stringify(state)}`;
 
     /**
      * Provider: Makes the Redux store available to the connect() calls in the component hierarchy below.
@@ -38,21 +47,22 @@ class Html extends Component {
      * Its used by <Router> but also useful for server rendering and integrating in brownfield development.
      * see https://github.com/reactjs/react-router/blob/master/docs/API.md#routercontext
      **/
+    // const root = PROD && renderToString(
+    //   <Provider store={store}>
+    //     <RouterContext {...renderProps}/>
+    //   </Provider>
+    // );
+
     const root = PROD && renderToString(
-      <Provider store={store}>
-        <RouterContext {...renderProps}/>
-      </Provider>
+      <StaticRouter location={url} context={context}>
+        <Router />
+      </StaticRouter>
     );
-
-
 
     return (
      <html>
        <head>
          <meta charSet="utf-8"/>
-         <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet" />
-          <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet" />
-
          <title>{title}</title>
        </head>
        <body>

@@ -1,74 +1,55 @@
-import React from 'react';
-import {push} from 'react-router-redux';
-import {match} from 'react-router';
-// import {renderToStaticMarkup} from 'react-dom-stream/server';
+// Node Modules
 import fs from 'fs';
-import {join, basename} from 'path';
 
+// Libraries
+import React from 'react';
+import {renderToString} from 'react-dom/server'
 
-import {HTML} from './HTML.js';
+// Redux
+// import {push} from 'react-router-redux';
 // import createStore from '../universal/redux/createStore.js';
 
-function renderApp(res, store, assets, renderProps) {
-  const location = renderProps && renderProps.location && renderProps.location.pathname || '/';
-  // Needed so some components can render based on location
-  // store.dispatch(push(location));
+// Components
+import Html from './Html.js';
 
-  /**
-   * Note: react-dom-strem is calling the PropTypes directly which will cause the code to break in
-   * React 16, waiting on a PR for issue https://github.com/aickin/react-dom-stream/issues/22
-   *
-   * see https://facebook.github.io/react/warnings/dont-call-proptypes.html
-   **/
+function renderApp(url, res, store, assets) {
+  const context = {};
 
-  const htmlStream = renderToStaticMarkup(
-    <HTML
-      title="HMR | SSR | FTW"
-      // store={store}
-      assets={assets}
-      renderProps={renderProps}
-    />
+  const html = renderToString(
+    <Html
+      title='💥'
+      store={store}
+      url={url}
+      context={context}
+      assets={assets} />
   );
 
-  res.write('<!DOCTYPE html>');
+  if (context.url) {
+    res.writeHead(302, {
+      Location: context.url
+    });
 
-  htmlStream.pipe(res, {end: false});
-  htmlStream.on('end', () => res.end());
+    res.end();
+  } else {
+    res.send('<!DOCTYPE html>'+html);
+  }
 }
 
 export const renderPage = (req, res) => {
-  const store = createStore( );
-
-  const makeRoutes = require('../../build/prerender');
-  const assets     = require('../../build/assets.json');
+  const store = {};// createStore( );
+  const assets = require('../../build/assets.json');
 
   assets.manifest.text = fs.readFileSync(
     join(__dirname, '..', '..', 'build', basename(assets.manifest.js)),
     'utf-8'
   );
 
-  const routes = makeRoutes(store);
-
-  match({routes, location: req.url}, (error, redirectLocation, renderProps) => {
-
-    if (error) {
-     res.status(500).send(error.message);
-    } else if (redirectLocation) {
-     res.redirect(redirectLocation.pathname + redirectLocation.search);
-    } else if (renderProps) {
-     renderApp(res, store, assets, renderProps);
-    } else {
-     res.status(404).send('Not found');
-    }
-
-  });
-
-  // renderApp(res, store);
+  renderApp(req.url, res, store, assets);
 };
 
 export const renderDevPage = (req, res) => {
-  const store = createStore( );
-  renderApp(res, store);
+  const store = {};// createStore( );
+  renderApp(req.url, res, store);
 };
 
 export default renderPage;

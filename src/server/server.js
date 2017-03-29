@@ -22,8 +22,7 @@ if (PROD) {
 
   app.use('/static', express.static('build'));
 
-  // app.get('*', renderPage);
-  app.get('*', renderDevPage);
+  app.get('*', renderPage);
 
 // Development settings
 } else if (!PROD) {
