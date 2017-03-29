@@ -51,4 +51,14 @@ The challenge requirements seem vague, am I missing something?
 
 # Running My App (README.md)
 
---Insert your readme here--
+## Alex J Ray
+
+## Stack
+- Node.js
+- Express
+
+- React
+- React Router 4
+
+- Webpack 2
+- Home Module Reloader 3
