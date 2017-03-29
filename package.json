@@ -1,0 +1,19 @@
+{
+  "name": "webapp-challenge",
+  "version": "1.0.0",
+  "description": "## Purpose",
+  "main": "server/app.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Polymail/webapp-challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Polymail/webapp-challenge/issues"
+  },
+  "homepage": "https://github.com/Polymail/webapp-challenge#readme"
+}
