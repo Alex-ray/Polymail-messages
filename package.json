@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/Polymail/webapp-challenge/issues"
   },
-  "homepage": "https://github.com/Polymail/webapp-challenge#readme"
+  "homepage": "https://github.com/Polymail/webapp-challenge#readme",
+  "engines": {
+    "node": ">=7.5",
+    "npm": ">=4"
+  }
 }
