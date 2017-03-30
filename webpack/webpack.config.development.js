@@ -2,6 +2,9 @@ import path from 'path';
 import webpack from 'webpack';
 import qs from 'querystring';
 
+import autoprefixer from 'autoprefixer';
+import cssNext from "postcss-cssnext";
+
 const root = process.cwd();
 const src  = path.join(root, 'src');
 
@@ -64,15 +67,25 @@ export default {
       },
 
       // CSS
-      {test: /\.css$/,
+      {test: /\.css|less$/,
        include: clientInclude,
        use: [
          {loader: 'style-loader'},
          {loader: 'css-loader',
           options: {
+            root: src,
             modules: true,
             importLoaders: 1,
             localIdentName: '[path][name]-[local]'
+          }},
+          {loader: 'less-loader'},
+          {loader: 'postcss-loader',
+            options: {
+              plugins: function () {
+                return [
+                  autoprefixer
+                ];
+              }
           }}
        ]
       }

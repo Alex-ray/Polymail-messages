@@ -3,7 +3,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 
 // Components
-import {LoginPage} from 'universal/components/pages/LoginPage.js'
+import {LoginPage} from 'universal/components/pages/LoginPage/LoginPage.js'
 
 // Actions
 import {
@@ -13,23 +13,29 @@ import {
 @connect(mapStateToProps, mapDispatchToProps, mergeProps)
 class LoginContainer extends Component {
   static propTypes = {
-    login: PropTypes.func.isRequired
+    login: PropTypes.func.isRequired,
+    error: PropTypes.string,
+    loading: PropTypes.bool
   };
 
   render () {
     const {
-      login
+      login,
+      error,
+      loading
     } = this.props;
 
     return (
-      <LoginPage login={login}/>
+      <LoginPage login={login} error={error} loading={loading}/>
     );
   }
 }
 
 function mapStateToProps (state, ownProps) {
   return {
-    authToken: state.auth.get('authToken')
+    error: state.auth.get('error'),
+    authToken: state.auth.get('authToken'),
+    loading: state.auth.get('loggingIn')
   };
 }
 
@@ -40,7 +46,7 @@ function mapDispatchToProps (dispatch) {
 }
 
 function mergeProps(stateProps, dispatchProps, ownProps) {
-  return Object.assign({}, ownProps, {
+  return Object.assign(stateProps, ownProps, {
     login: (userFields) => dispatchProps.login(userFields, stateProps.authToken)
   });
 }

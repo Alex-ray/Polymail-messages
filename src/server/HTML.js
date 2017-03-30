@@ -6,9 +6,6 @@ import {renderToString} from 'react-dom/server';
 // Redux
 import { Provider } from 'react-redux';
 
-// Components
-import Layout from 'universal/routes/Layout.js';
-
 class Html extends Component {
   static propTypes = {
     url: PropTypes.string.isRequired,
@@ -34,7 +31,7 @@ class Html extends Component {
       vendor
     } = assets || {};
 
-    let state = {}; //store.getState();
+    let state = store.getState();
 
     const initialState = `window.__INITIAL_STATE__ = ${JSON.stringify(state)}`;
 
@@ -44,6 +41,9 @@ class Html extends Component {
      * see https://github.com/reactjs/react-redux/blob/master/docs/api.md#provider-store
      *
      **/
+
+    const Layout =  PROD ? require( 'universal/routes/Layout.js') : () => {};
+
     const root = PROD && renderToString(
       <Provider>
         <StaticRouter location={url} context={context}>

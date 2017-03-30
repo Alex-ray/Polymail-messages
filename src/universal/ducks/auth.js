@@ -19,11 +19,13 @@ export default function reducer (state = initalState, action) {
   switch(action.type) {
     case AUTH_LOGGING_IN:
       return state.merge({
-        loggingIn: true
+        loggingIn: true,
+        error: ''
       });
     case AUTH_LOGIN_SUCCESS:
       return state.merge({
         loggingIn: false,
+        error: '',
         token: action.token
       });
     case AUTH_LOGIN_ERROR:
@@ -65,8 +67,6 @@ export const login = (dispatch) => {
     POSTLogin({email, password}).then((response) => {
       loginSuccess(dispatch)(response);
     }).catch((error) => {
-      console.log(error);
-      debugger;
       if (error.response && error.response.status === 400) {
         error.message = 'Wrong email or password!';
       }

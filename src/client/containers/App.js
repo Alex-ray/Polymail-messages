@@ -18,7 +18,7 @@ class App extends Component {
     } = this.props;
 
     return (
-     <ConnectedRouter history={history} >
+      <ConnectedRouter history={history} >
         <Layout />
       </ConnectedRouter>
     ) ;

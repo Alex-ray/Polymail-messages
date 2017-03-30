@@ -1,23 +1,35 @@
 import React, {Component, PropTypes} from 'react';
 
+import {
+  inputLabel,
+  inputText,
+  submitButton
+} from 'universal/styles/forms.less';
+
 class LoginForm extends Component {
   static propTypes = {
-    onSubmit: PropTypes.func
+    onSubmit: PropTypes.func,
+    loading: PropTypes.bool
   }
 
   render ( ) {
+    const {
+      loading
+    } = this.props;
+
+    const submitValue = loading ? 'Loading...' : 'Log In';
     return (
       <form action="/login" method="post" onSubmit={this._handleSubmit}>
         <div>
-            <label>email:</label>
-            <input type="text" name="email"/>
+            <label className={inputLabel}>Email Address</label>
+            <input className={inputText} type="text" name="email" placeholder="name@company.com"/>
         </div>
         <div>
-            <label>Password:</label>
-            <input type="password" name="password"/>
+            <label className={inputLabel}>Password:</label>
+            <input className={inputText} type="password" name="password" placeholder="password"/>
         </div>
         <div>
-            <input type="submit" value="Log In"/>
+            <input className={submitButton} type="submit" value={submitValue}/>
         </div>
       </form>
     );

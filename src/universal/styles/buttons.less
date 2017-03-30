@@ -1,0 +1,18 @@
+@import '~universal/styles/variables.less';
+
+.primaryButton {
+  box-shadow: none;
+  border: none;
+  border-radius: 2.5*@unit;
+  background-color: @dodger-blue;
+  font-size: 8*@unit;
+  margin: 0 auto;
+  color: @white;
+  width: 8*@base;
+  height: 1.7*@base;
+
+  &:hover, &:focus {
+    outline: none;
+    cursor: pointer;
+  }
+}

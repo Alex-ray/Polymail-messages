@@ -1,0 +1,16 @@
+@import './variables.less';
+
+.card {
+  max-width: 375px;
+  width: 100%;
+  padding: 2.5*@base;
+  background: @white;
+}
+
+.cardHover {
+  &:extend(.card);
+  box-shadow: @box-shadow;
+  border-width: @border-width;
+  border-style: solid;
+  border-color: @border-color;
+}
