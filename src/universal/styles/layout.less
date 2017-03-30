@@ -1,3 +1,5 @@
+@import '~universal/styles/variables.less';
+
 .centerVerticalHorizontal {
   display: flex;
   align-items: center;
@@ -7,4 +9,25 @@
 
 .textCenter {
   text-align: center;
+}
+
+.sidebarLayout {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  height: 100vh;
+  border-right-style: solid;
+  border-right-color: @border-color;
+  border-right-width: 0.7*@unit;
+}
+
+.sidebarSearchLayout {
+  padding: 1.5*@base 2*@base;
+  text-align: center;
+  display: block;
+}
+
+.sidebarTitleLayout {
+  padding: 0 2*@base;
 }

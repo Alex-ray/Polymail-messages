@@ -1,0 +1,21 @@
+@import '~universal/styles/variables.less';
+
+.container {
+  position: relative;
+  overflow: hidden;
+  padding: 1.5*@base 2*@base;
+  background-color: @white;
+
+  transition: background 250ms ease-in;
+
+  &:hover, &:focus {
+    cursor: pointer;
+    background-color: @light-blue-gray;
+  }
+}
+
+.sidebarMarker {
+  position: absolute;
+  left: 0.7*@base;
+  top: 50%;
+}
