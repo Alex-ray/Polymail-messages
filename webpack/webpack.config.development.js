@@ -17,6 +17,7 @@ const babelQuery = {
     "stage-0"
   ],
   "plugins": [
+    "transform-decorators-legacy",
     "react-hot-loader/babel"
   ]
 };

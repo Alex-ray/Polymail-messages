@@ -1,13 +1,14 @@
 import React, {Component, PropTypes} from 'react';
 
-class HomeContainer extends Component {
+class InboxContainer extends Component {
   render () {
     return (
       <section>
-        <h1>Home</h1>
+        <h1>Inbox</h1>
       </section>
     );
   }
 }
 
-export default HomeContainer;
+
+export default InboxContainer;

@@ -16,7 +16,7 @@ const store = createStore(history);
 render(
   <AppContainer>
     <Provider store={store}>
-      <App />
+      <App history={history} />
     </Provider>
   </AppContainer>,
   document.getElementById('root')

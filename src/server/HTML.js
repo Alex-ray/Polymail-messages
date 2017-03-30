@@ -14,7 +14,7 @@ class Html extends Component {
     url: PropTypes.string.isRequired,
     store: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,
-    assets: PropTypes.object,
+    assets: PropTypes.object
   }
 
   render () {

@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import React, {Component, PropTypes} from 'react';
+import { ConnectedRouter } from 'react-router-redux';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -8,11 +8,19 @@ import { Provider } from 'react-redux';
 import Layout from 'universal/routes/Layout.js';
 
 class App extends Component {
+  static propTypes = {
+    history: PropTypes.object.isRequired
+  }
+
   render () {
+    const {
+      history
+    } = this.props;
+
     return (
-      <BrowserRouter>
+     <ConnectedRouter history={history} >
         <Layout />
-      </BrowserRouter>
+      </ConnectedRouter>
     ) ;
   }
 }

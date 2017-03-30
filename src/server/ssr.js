@@ -52,7 +52,7 @@ export const renderPage = (req, res) => {
 
 export const renderDevPage = (req, res) => {
   const history =  createHistory( );
-  const store   = createStore( );
+  const store   = createStore(history);
   renderApp(req.url, res, store);
 };
 

@@ -10,13 +10,13 @@ import {
   routerMiddleware
 } from 'react-router-redux';
 
-import reducers from './reducers';
+import * as Reducers from './reducers';
 
 export default (history) => {
   const middleware = routerMiddleware(history);
 
   const store = createStore(combineReducers({
-    ...reducers,
+    ...Reducers,
     router: routerReducer
   }), applyMiddleware(middleware));
 
