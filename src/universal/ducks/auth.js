@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import {push} from 'react-router-redux';
+import {replace} from 'react-router-redux';
 
 // API
 import {POSTLogin} from 'universal/api/api.js';
@@ -46,7 +46,7 @@ export const loginSuccess = (dispatch) => {
       token: token
     });
 
-    dispatch(push('/'));
+    dispatch(replace('/'));
   } ;
 }
 

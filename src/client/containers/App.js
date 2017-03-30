@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import { ConnectedRouter } from 'react-router-redux';
+import {Route} from 'react-router';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -16,10 +17,13 @@ class App extends Component {
     const {
       history
     } = this.props;
+    console.log(this.props);
 
     return (
       <ConnectedRouter history={history} >
-        <Layout />
+        <Route render={({location}) => {
+          return <Layout location={location} />
+        }}/>
       </ConnectedRouter>
     ) ;
   }
