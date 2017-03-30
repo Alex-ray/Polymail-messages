@@ -2,4 +2,4 @@
 require('babel-register');
 
 // Server Driver Code, everything from here on can use all the super future ES6 features!
-require('./server.js');
+module.exports = require('./server.js');

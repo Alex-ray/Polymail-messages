@@ -1,0 +1,13 @@
+{
+  "posts": [
+    { "id": 1, "title": "json-server", "author": "typicode" }
+  ],
+  "comments": [
+    { "id": 1, "body": "some comment", "postId": 1 }
+  ],
+  "users": [
+    { "id": 1, "email": "admin@example.com", "password": "password", "displayName": "Super User" },
+    { "id": 2, "email": "jack@example.com", "password": "secret", "displayName": "Jack" },
+    { "id": 3, "email": "jill@example.com", "password": "birthday", "displayName": "Jill" }
+  ]
+}

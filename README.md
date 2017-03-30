@@ -62,3 +62,9 @@ The challenge requirements seem vague, am I missing something?
 
 - Webpack 2
 - Home Module Reloader 3
+
+## tests
+
+- mocha
+- chai
+- chai-http
