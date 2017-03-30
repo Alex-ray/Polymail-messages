@@ -1,13 +1,5 @@
 import React, {Component, PropTypes} from  'react';
 import {Route, Redirect} from 'react-router';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-
-import {
-  fadeEnter,
-  fadeEnteActive,
-  fadeLeave,
-  fadeLeaveActive
-} from 'universal/styles/transitions.less';
 
 import * as Routes from 'universal/routes/index.js';
 
@@ -26,17 +18,8 @@ class Layout extends Component {
     return (
       <div className={background}>
         <PrivateRouteContainer location={location} path='/' component={Routes.Inbox} />
-        <ReactCSSTransitionGroup
-          transitionName={{
-            enter: fadeEnter,
-            enterActive: fadeEnteActive,
-            leave: fadeLeave,
-            leaveActive: fadeLeaveActive,
-          }}
-          transitionEnterTimeout={300}
-          transitionLeaveTimeout={300}>
-          <Route exact location={location}  path='/login' component={Routes.Login} />
-        </ReactCSSTransitionGroup>
+        <Route exact location={location}  path='/login' component={Routes.Login} />
+        <Route exact location={location} path='/logout' component={Routes.Logout} />
       </div>
     );
   }

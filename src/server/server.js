@@ -52,10 +52,10 @@ app.post('/login', passport.authenticate('local'),  function(req, res) {
       res.status(200).json({user: req.user});
 });
 
-app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
-});
+// app.get('/logout', function(req, res){
+//   req.logout();
+//   res.redirect('/');
+// });
 
 // Production settings
 if (PROD) {

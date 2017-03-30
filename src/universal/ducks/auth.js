@@ -7,16 +7,33 @@ import {POSTLogin} from 'universal/api/api.js';
 const AUTH_LOGGING_IN  = 'AUTH_LOGGING_IN';
 const AUTH_LOGIN_ERROR = 'AUTH_LOGIN_ERROR';
 const AUTH_LOGIN_SUCCESS  = 'AUTH_LOGIN_SUCCESS';
+const AUTH_LOGOUT         = 'AUTH_LOGOUT';
+
+const AUTH_TOKEN_KEY = 'AUTH_TOKEN_KEY';
+
+let token = '';
+
+const HAS_LOCAL_STORAGE = typeof localStorage !== 'undefined';
+
+if (HAS_LOCAL_STORAGE) {
+   token = localStorage.getItem(AUTH_TOKEN_KEY) || '';
+}
 
 const initalState = Immutable.fromJS({
   user: {},
   error: '',
-  token: '',
+  token: token,
   loggingIn: false
 });
 
 export default function reducer (state = initalState, action) {
   switch(action.type) {
+    case AUTH_LOGOUT:
+      return state.merge({
+        loggingIn: false,
+        error: '',
+        token: '',
+      });
     case AUTH_LOGGING_IN:
       return state.merge({
         loggingIn: true,
@@ -46,6 +63,10 @@ export const loginSuccess = (dispatch) => {
       token: token
     });
 
+    if (HAS_LOCAL_STORAGE) {
+      localStorage.setItem(AUTH_TOKEN_KEY, token);
+    }
+
     dispatch(replace('/'));
   } ;
 }
@@ -73,4 +94,14 @@ export const login = (dispatch) => {
       loginError(dispatch)(error);
     })
   };
+}
+
+export const logout = (dispatch) => {
+  return () => {
+    if (HAS_LOCAL_STORAGE) {
+      localStorage.setItem(AUTH_TOKEN_KEY, '');
+    }
+    dispatch({type: AUTH_LOGOUT});
+    dispatch(replace('/login'));
+  }
 }

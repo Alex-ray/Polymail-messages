@@ -17,7 +17,6 @@ class App extends Component {
     const {
       history
     } = this.props;
-    console.log(this.props);
 
     return (
       <ConnectedRouter history={history} >
