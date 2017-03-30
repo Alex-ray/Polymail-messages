@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
+// Redux
+import { Provider } from 'react-redux';
+
 // Components
 import Layout from 'universal/routes/Layout.js';
 

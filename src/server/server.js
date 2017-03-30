@@ -70,7 +70,7 @@ if (PROD) {
   const MockServer = jsonServer.router(mockDataPath);
 
   HMR(app);
-  // app.use(jsonServer.defaults());
+
   app.use('/api', (req, res, next) => {
     if (req.user) { // add your authorization logic here
      next() // continue to JSON Server router
@@ -84,9 +84,9 @@ if (PROD) {
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
 // error handlers
@@ -94,25 +94,17 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
-        console.error('error : ', err)
-        res.status(err.status || 500);
-        // res.render('error', {
-        //     message: err.message,
-        //     error: err
-        // });
-    });
+  app.use(function(err, req, res, next) {
+    console.error('error : ', err)
+    res.status(err.status || 500);
+  });
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   console.error('error : ', err.message)
-    res.status(err.status || 500);
-    // res.render('error', {
-    //     message: err.message,
-    //     error: {}
-    // });
+  res.status(err.status || 500);
 });
 
 

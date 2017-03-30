@@ -8,7 +8,8 @@ import {renderToString} from 'react-dom/server'
 
 // Redux
 // import {push} from 'react-router-redux';
-// import createStore from '../universal/redux/createStore.js';
+import createStore from '../universal/redux/createStore.js';
+import createHistory from 'history/createMemoryHistory'
 
 // Components
 import Html from './Html.js';
@@ -37,7 +38,8 @@ function renderApp(url, res, store, assets) {
 }
 
 export const renderPage = (req, res) => {
-  const store = {};// createStore( );
+  const history = createHistory( );
+  const store  = createStore(history);
   const assets = require('../../build/assets.json');
 
   assets.manifest.text = fs.readFileSync(
@@ -49,7 +51,8 @@ export const renderPage = (req, res) => {
 };
 
 export const renderDevPage = (req, res) => {
-  const store = {};// createStore( );
+  const history =  createHistory( );
+  const store   = createStore( );
   renderApp(req.url, res, store);
 };
 

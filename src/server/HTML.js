@@ -4,7 +4,7 @@ import {StaticRouter} from 'react-router';
 import {renderToString} from 'react-dom/server';
 
 // Redux
-// import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 
 // Components
 import Layout from 'universal/routes/Layout.js';
@@ -43,20 +43,13 @@ class Html extends Component {
      * Normally, you can’t use connect() without wrapping the root component in <Provider>.
      * see https://github.com/reactjs/react-redux/blob/master/docs/api.md#provider-store
      *
-     * RouterContext: A <RouterContext> renders the component tree for a given router state.
-     * Its used by <Router> but also useful for server rendering and integrating in brownfield development.
-     * see https://github.com/reactjs/react-router/blob/master/docs/API.md#routercontext
      **/
-    // const root = PROD && renderToString(
-    //   <Provider store={store}>
-    //     <RouterContext {...renderProps}/>
-    //   </Provider>
-    // );
-
     const root = PROD && renderToString(
-      <StaticRouter location={url} context={context}>
-        <Layout />
-      </StaticRouter>
+      <Provider>
+        <StaticRouter location={url} context={context}>
+          <Layout />
+        </StaticRouter>
+      </Provider>
     );
 
     return (
