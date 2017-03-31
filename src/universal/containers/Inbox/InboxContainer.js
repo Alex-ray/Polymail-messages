@@ -1,10 +1,10 @@
+// Libraries
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {Route} from 'react-router';
 
 // Components
 import Sidebar from 'universal/components/Sidebar/Sidebar.js';
-
 import * as Routes from 'universal/routes/index.js';
 
 // Actions
@@ -30,15 +30,12 @@ class InboxContainer extends Component {
   }
 
   render () {
-    const {
-      messages,
-      children
-    } = this.props;
+    const { messages } = this.props;
 
     return (
       <section className={mainLayoutContainer}>
         <Sidebar messages={messages} />
-        <Route exact path='/thread/:id' component={Routes.Thread} />
+        <Route path='/thread/:id' component={Routes.Thread} />
       </section>
     );
   }

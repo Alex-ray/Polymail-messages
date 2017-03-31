@@ -4,15 +4,6 @@
 .container {
   position: relative;
   overflow: hidden;
-  padding: 1.5*@base 2*@base;
-  background-color: @white;
-
-  transition: background 250ms ease-in;
-
-  &:hover, &:focus {
-    cursor: pointer;
-    background-color: @light-blue-gray;
-  }
 }
 
 .sidebarMarker {
@@ -30,4 +21,24 @@
   position: absolute;
   right: 2*@base;
   top: 1.5*@base;
+}
+
+.containerLink {
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  display: block;
+  padding: 1.5*@base 2*@base;
+  background-color: @white;
+
+  transition: background 250ms ease-in;
+
+  &:hover, &:focus {
+    cursor: pointer;
+    background-color: @light-blue-gray;
+  }
+}
+
+.containerLink.highlightedContainer {
+  background-color: @light-blue-gray;
 }

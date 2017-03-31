@@ -6,7 +6,8 @@ import Thread from 'universal/components/Thread/Thread.js';
 
 // Actions
 import {
-  fetchMessages
+  fetchMessages,
+  postReply
 } from 'universal/ducks/messages.js';
 
 // Styles
@@ -19,7 +20,8 @@ import {
 class ThreadContainer extends Component {
   static propTypes = {
     message: PropTypes.object.isRequired,
-    fetchMessages: PropTypes.func.isRequired
+    fetchMessages: PropTypes.func.isRequired,
+    reply: PropTypes.func.isRequired
   }
 
   componentDidMount() {
@@ -28,12 +30,13 @@ class ThreadContainer extends Component {
 
   render (){
     const {
-      message
+      message ,
+      reply
     } = this.props;
-    
+
     return (
       <div className={mainLayout}>
-        <Thread message={message} />
+        <Thread message={message} reply={reply}/>
       </div>
     );
   }
@@ -57,12 +60,14 @@ function mapStateToProps (state, ownProps) {
 
 function mapDispatchToProps (dispatch) {
   return  {
+    reply: postReply(dispatch),
     fetchMessages: fetchMessages(dispatch)
   };
 }
 
 function mergeProps(stateProps, dispatchProps, ownProps) {
   return Object.assign(stateProps, ownProps, {
+    reply: (messageId, text) => dispatchProps.reply(messageId, text, stateProps.authToken),
     fetchMessages: () => dispatchProps.fetchMessages(stateProps.authToken)
   });
 }

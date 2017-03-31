@@ -1,6 +1,7 @@
 // Libraries
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
+import { withRouter } from 'react-router';
 
 // Components
 import SidebarSearch from 'universal/components/SidebarSearch/SidebarSearch.js';
@@ -23,17 +24,20 @@ class Sidebar extends Component {
 
   render () {
     const {
-      messages
+      messages,
+      match: {
+        params
+      }
     } = this.props;
 
     return (
       <aside className={classNames(container, sidebarLayout)}>
         <SidebarSearch />
         <SidebarTitle title='All Inboxes' />
-        <SidebarMessageList messages={messages} />
+        <SidebarMessageList messages={messages} selected={params.id}/>
       </aside>
     );
   }
 }
 
-export default Sidebar;
+export default withRouter(Sidebar);

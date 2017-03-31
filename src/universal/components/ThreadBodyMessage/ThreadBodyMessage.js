@@ -52,7 +52,7 @@ class ThreadBodyMessage extends Component {
       reciepients.push(name);
     }
 
-    return reciepients;
+    return reciepients.join(', ');
   }
 }
 

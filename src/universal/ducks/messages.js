@@ -2,7 +2,7 @@ import Immutable from 'immutable';
 import {replace} from 'react-router-redux';
 
 // API
-import {GETThreads} from 'universal/api/api.js';
+import {GETThreads, POSTReply} from 'universal/api/api.js';
 
 let FETCHED = false;
 
@@ -52,16 +52,22 @@ export default function reducer (state = initalState, action) {
   }
 } ;
 
+export const addMessage = (dispatch) => {
+  return (message) => {
+    dispatch({
+      type: MESSAGES_ADD_MESSAGE,
+      message: message
+    });
+  };
+}
+
 export const addMessages = (dispatch) => {
   return (messages, messageList = []) => {
 
     for (var i = 0; i < messages.length; i++) {
       let message = messages[i];
 
-      dispatch({
-        type: MESSAGES_ADD_MESSAGE,
-        message: message
-      });
+      addMessage(dispatch)(message);
 
       messageList.push(message.id);
     }
@@ -90,6 +96,19 @@ export const fetchMessages = (dispatch) =>  {
       });
     }
   };
+}
+
+export const postReply = (dispatch) => {
+  return (messageId, replyText, authToken) => {
+    POSTReply({messageId, replyText, authToken}).then((newMessage) => {
+      addMessage(dispatch)(newMessage);
+    }).catch((error) => {
+      dispatch({
+        type: MESSAGES_ERROR,
+        error: error.message
+      })
+    });
+  }
 }
 
 
