@@ -1,8 +1,8 @@
 import fetch from 'isomorphic-fetch';
 
-const API_BASE = 'https://hndrxx.polymail.io';
-const API_AUTH = '/v1/auth';
-const API_THREADS = '/v1/threads';
+const API_BASE = 'https://hndrxx.polymail.io/v1';
+const API_AUTH = '/auth';
+const API_THREADS = '/threads';
 const API_REPLY   = '/reply'
 
 const DEFAULT_HEADERS = {
@@ -52,13 +52,11 @@ export const POSTReply = ({messageId, replyText, authToken}) => {
   const url = API_BASE+API_THREADS+'/'+messageId+API_REPLY;
   const headers = getAuthHeaders(authToken);
 
-  console.log(headers);
-
   const options = {
     method: 'POST',
     header: headers,
     body: JSON.stringify({
-      "body": "<p>replyText</p>"
+      "body": replyText
     })
   };
 

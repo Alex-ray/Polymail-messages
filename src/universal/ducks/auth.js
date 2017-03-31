@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import {replace} from 'react-router-redux';
+import {go} from 'react-router-redux';
 
 // API
 import {POSTLogin} from 'universal/api/api.js';
@@ -67,7 +67,7 @@ export const loginSuccess = (dispatch) => {
       localStorage.setItem(AUTH_TOKEN_KEY, token);
     }
 
-    dispatch(replace('/'));
+    dispatch(go('/threads'));
   } ;
 }
 

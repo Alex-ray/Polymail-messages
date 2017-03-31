@@ -35,7 +35,7 @@ class InboxContainer extends Component {
     return (
       <section className={mainLayoutContainer}>
         <Sidebar messages={messages} />
-        <Route path='/thread/:id' component={Routes.Thread} />
+        <Route exact path='/thread/:id' component={Routes.Thread} />
       </section>
     );
   }
