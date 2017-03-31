@@ -1,11 +1,9 @@
 import React, {Component, PropTypes} from 'react';
+
 import {connect} from 'react-redux';
-import {Route} from 'react-router';
 
 // Components
 import Sidebar from 'universal/components/Sidebar/Sidebar.js';
-
-import * as Routes from 'universal/routes/index.js';
 
 // Actions
 import {
@@ -15,15 +13,16 @@ import {
 
 // Styles
 import {
-  mainLayoutContainer
+  mainLayoutContainer,
+  mainLayout
 } from 'universal/styles/layout.less';
 
 @connect(mapStateToProps, mapDispatchToProps, mergeProps)
-class InboxContainer extends Component {
-  static PropTypes = {
-    messages: PropTypes.array.isRequired,
-    fetchMessages: PropTypes.func.isRequired
-  };
+class InboxThreadContainer extends Component {
+  static propTypes = {
+    messageDictionary: PropTypes.object.isRequired,
+    messages: PropTypes.array.isRequired
+  }
 
   componentDidMount() {
     this.props.fetchMessages();
@@ -32,23 +31,32 @@ class InboxContainer extends Component {
   render () {
     const {
       messages,
-      children
+      messageDictionary,
+      match: {
+        params
+      }
     } = this.props;
 
+    let message = messageDictionary[params.id] || {};
+
     return (
-      <section className={mainLayoutContainer}>
-        <Sidebar messages={messages} />
-        <Route exact path='/thread/:id' component={Routes.Thread} />
-      </section>
+      <div className={mainLayoutContainer}>
+        <Sidebar messages={messages}/>
+            <div className={mainLayout}>
+              <Thread message={message} />
+            </div>
+      </div>
     );
   }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps (state, ownProps) {
   let messages = state.messages.get('messages').toJS();
   let list = state.messages.get('messageList').toJS();
+
   return {
     authToken: state.auth.get('token'),
+    messageDictionary: messages,
     messages: buildMessageList(messages, list)
   };
 }
@@ -64,4 +72,5 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
     fetchMessages: () => dispatchProps.fetchMessages(stateProps.authToken)
   });
 }
-export default InboxContainer;
+
+export default InboxThreadContainer;

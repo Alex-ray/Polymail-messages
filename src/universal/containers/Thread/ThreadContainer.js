@@ -1,55 +1,57 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {Route} from 'react-router';
 
 // Components
-import Sidebar from 'universal/components/Sidebar/Sidebar.js';
-
-import * as Routes from 'universal/routes/index.js';
+import Thread from 'universal/components/Thread/Thread.js';
 
 // Actions
 import {
-  fetchMessages,
-  buildMessageList
+  fetchMessages
 } from 'universal/ducks/messages.js';
 
 // Styles
 import {
-  mainLayoutContainer
+  mainLayoutContainer,
+  mainLayout
 } from 'universal/styles/layout.less';
 
 @connect(mapStateToProps, mapDispatchToProps, mergeProps)
-class InboxContainer extends Component {
-  static PropTypes = {
-    messages: PropTypes.array.isRequired,
+class ThreadContainer extends Component {
+  static propTypes = {
+    message: PropTypes.object.isRequired,
     fetchMessages: PropTypes.func.isRequired
-  };
+  }
 
   componentDidMount() {
     this.props.fetchMessages();
   }
 
-  render () {
+  render (){
     const {
-      messages,
-      children
+      message
     } = this.props;
-
+    
     return (
-      <section className={mainLayoutContainer}>
-        <Sidebar messages={messages} />
-        <Route exact path='/thread/:id' component={Routes.Thread} />
-      </section>
+      <div className={mainLayout}>
+        <Thread message={message} />
+      </div>
     );
   }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps (state, ownProps) {
   let messages = state.messages.get('messages').toJS();
   let list = state.messages.get('messageList').toJS();
+
+  const {
+    match: {
+      params
+    }
+  } = ownProps;
+
   return {
     authToken: state.auth.get('token'),
-    messages: buildMessageList(messages, list)
+    message: messages[params.id] || {}
   };
 }
 
@@ -64,4 +66,5 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
     fetchMessages: () => dispatchProps.fetchMessages(stateProps.authToken)
   });
 }
-export default InboxContainer;
+
+export default ThreadContainer;

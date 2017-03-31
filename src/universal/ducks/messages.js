@@ -77,10 +77,10 @@ export const fetchMessages = (dispatch) =>  {
   return (authToken) => {
 
     if (!FETCHED) {
+      FETCHED = true;
       dispatch({type: MESSAGES_FETCHING});
 
       GETThreads(authToken).then((messages) => {
-        FETCHED = true;
         addMessages(dispatch)(messages);
       }).catch((error) => {
         dispatch({
