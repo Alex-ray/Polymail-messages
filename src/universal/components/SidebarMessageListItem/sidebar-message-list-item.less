@@ -1,4 +1,5 @@
 @import '~universal/styles/variables.less';
+@import '~universal/styles/typography.less';
 
 .container {
   position: relative;
@@ -18,4 +19,15 @@
   position: absolute;
   left: 0.7*@base;
   top: 50%;
+}
+
+.bodyContainer {
+  max-height: 28px;
+}
+
+.subheaderInfo {
+  &:extend(.subheaderType);
+  position: absolute;
+  right: 2*@base;
+  top: 1.5*@base;
 }
