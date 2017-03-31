@@ -1,0 +1,29 @@
+@import '~universal/styles/variables.less';
+@import '~universal/styles/typography.less';
+
+.threadHeader {
+  margin: 0 2.3*@base;
+  margin-top: 2*@base;
+}
+
+.threadFromType {
+  &:extend(.subheaderBoldType);
+  color: @greyish-brown;
+}
+
+.threadDateType {
+  &:extend(.subheaderType);
+  float: right;
+}
+
+.threadToType {
+  &:extend(.subheaderType);
+  color: @medium-gray;
+}
+
+.threadBodyType {
+  &:extend(.bodyType);
+  color: @greyish-brown;
+  margin: 0 2.3*@base;
+  max-width: 36*@base;
+}

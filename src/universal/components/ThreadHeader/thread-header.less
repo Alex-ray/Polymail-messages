@@ -1,0 +1,28 @@
+@import '~universal/styles/variables.less';
+
+.threadHeader {
+  position: relative;
+  height: 4.5*@base;
+  margin-top: 35px;
+  padding: 0 1.7*@base;
+
+  border-bottom-style: solid;
+  border-bottom-color: @border-color;
+  border-bottom-width: @border-width;
+}
+
+.threadSubject {
+  font-size: 15px;
+  color: @greyish-brown;
+  font-family: @font;
+}
+
+.threadParticipants {
+  font-size: 8.6px;
+  font-family: @font;
+  color: @blue-grey;
+  background-color: @white;
+  padding: 5px;
+  position: absolute;
+  bottom: -10px;
+}

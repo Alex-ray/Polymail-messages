@@ -1,36 +1,12 @@
 // Libraries
 import React, {Component, PropTypes} from 'react';
 
-import {
-  threadHeader,
-  threadSubject,
-  threadParticipants
-} from './thread.less';
+import ThreadHeader from 'universal/components/ThreadHeader/ThreadHeader.js';
+import ThreadBody   from 'universal/components/ThreadBody/ThreadBody.js';
 
 function Loading () {
   return (
     <h1>Loading</h1>
-  );
-}
-
-function MessageThread (props) {
-  const {
-    message: {
-      messages
-    }
-  } = props;
-
-  const subject = messages[0].subject;
-
-  return (
-    <div>
-      <header className={threadHeader}>
-        <h1 className={threadSubject}>{subject}</h1>
-        <span className={threadParticipants}>Brandon Shin, Annie Clark and me</span>
-      </header>
-      <div>
-      </div>
-    </div>
   );
 }
 
@@ -44,17 +20,17 @@ class Thread extends Component {
       message
     } = this.props;
 
-    console.log(message);
-
-    // const subject = message.messages[0].subject;
-
     const isLoading = message.id ? false : true;
-
 
     return (
       <section>
         {isLoading && <Loading />}
-        {!isLoading && <MessageThread message={message}/>}
+        {!isLoading && (
+          <div>
+            <ThreadHeader message={message} />
+            <ThreadBody message={message} />
+          </div>
+        )}
       </section>
     );
   }
