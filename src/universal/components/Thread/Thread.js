@@ -13,7 +13,6 @@ import {
   threadContainer
 } from 'universal/styles/layout.less';
 
-
 function Loading () {
   return (
     <h1 className={loading}>Loading...</h1>
@@ -29,22 +28,23 @@ class Thread extends Component {
   render () {
     const {
       message,
-      reply
+      reply,
+      location
     } = this.props;
 
     const isLoading = message.id ? false : true;
 
     return (
-      <section className={threadContainer}>
-        {isLoading && <Loading />}
-        {!isLoading && (
-          <div>
-            <ThreadHeader message={message} />
-            <ThreadBody message={message} />
-            <ThreadReply messageId={message.id} reply={reply} />
-          </div>
-        )}
-      </section>
+        <section className={threadContainer}>
+          {isLoading && <Loading />}
+          {!isLoading && (
+            <div>
+              <ThreadHeader message={message} />
+              <ThreadBody message={message} />
+              <ThreadReply messageId={message.id} reply={reply} />
+            </div>
+          )}
+        </section>
     );
   }
 }

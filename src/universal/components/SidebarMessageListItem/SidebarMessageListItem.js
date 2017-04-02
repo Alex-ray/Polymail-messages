@@ -5,6 +5,13 @@ import moment from 'moment';
 import Dotdotdot from 'react-dotdotdot';
 import { NavLink } from 'react-router-dom';
 
+// Utils
+import {
+  getMessageSender,
+  getReciepientCount,
+  hasUnreadMessages
+} from 'universal/utils/messages.js';
+
 // Components
 import ActiveMarker from 'universal/components/ActiveMarker/ActiveMarker.js';
 
@@ -40,13 +47,13 @@ class SidebarMessageListItem extends Component {
     } = this.props;
 
     // these need to be moved into compoentDidUpdate and be set in state
-    const from = this._getFromName(messages[0]);
-    const toCount = this._getToCount(messages);
-    const unreadMessages = this._hasUnreadMessages(messages);
+    const from = getMessageSender(messages);
+    const toCount = getReciepientCount(messages);
+    const unreadMessages = hasUnreadMessages(messages);
 
     const date = moment(messages[0].sent).format('h:MM a');
 
-    const title = messages[0].subject;
+    const title = messages[messages.length-1].subject;
     const body  = messages[0].body;
 
     const activeMarker = unreadMessages ? <ActiveMarker className={sidebarMarker} /> : null;
@@ -65,38 +72,6 @@ class SidebarMessageListItem extends Component {
         </li>
     )
   }
-
-  _getToCount (messages) {
-    let toList = [];
-
-    for (var i = 0; i < messages.length; i++) {
-      let message = messages[i];
-      for (var j = 0; j < message.to.length; j++) {
-        let to = message.to[j];
-        if (toList.indexOf(to) === -1) {
-          toList.push(to);
-        }
-      }
-    }
-
-    return toList;
-  }
-
-  _getFromName (message) {
-    return  message.from.split(' ')[0];
-  }
-
-  _hasUnreadMessages (messages) {
-    for (var i = 0; i < messages.length; i++) {
-      let message = messages[i];
-      if (!message.read) {
-        return true;
-      }
-    }
-
-    return false;
-  }
-
 }
 
 export default SidebarMessageListItem;

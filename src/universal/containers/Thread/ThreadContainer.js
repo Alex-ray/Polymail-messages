@@ -10,12 +10,6 @@ import {
   postReply
 } from 'universal/ducks/messages.js';
 
-// Styles
-import {
-  mainLayoutContainer,
-  mainLayout
-} from 'universal/styles/layout.less';
-
 @connect(mapStateToProps, mapDispatchToProps, mergeProps)
 class ThreadContainer extends Component {
   static propTypes = {
@@ -34,11 +28,7 @@ class ThreadContainer extends Component {
       reply
     } = this.props;
 
-    return (
-      <div className={mainLayout}>
-        <Thread message={message} reply={reply}/>
-      </div>
-    );
+    return (<Thread message={message} reply={reply}/>);
   }
 }
 

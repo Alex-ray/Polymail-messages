@@ -1,5 +1,12 @@
+// Libraries
 import React, {Component, PropTypes} from 'react';
 
+// Utils
+import {
+  getParticipants
+} from 'universal/utils/messages.js';
+
+// Styles
 import {
   threadHeader,
   threadSubject,
@@ -16,10 +23,8 @@ class ThreadHeader extends Component {
       message
     } = this.props;
 
-    let subject = message.messages[0].subject;
-
-    let participants = this._getParticipants(message.messages).join(', ');
-
+    let subject = message.messages[message.messages.length-1].subject;
+    let participants = getParticipants(message.messages).join(', ');
 
     return (
       <header className={threadHeader}>
@@ -27,21 +32,6 @@ class ThreadHeader extends Component {
         <span className={threadParticipants}>{participants} and me</span>
       </header>
     );
-  }
-
-  _getParticipants (messages) {
-    let participants = [];
-
-    for (var i = 0; i < messages.length; i++) {
-      let message = messages[i];
-      let from = message.from.split(' ')[0];
-
-      if (participants.indexOf(from) === -1) {
-        participants.push(from);
-      }
-    }
-
-    return participants;
   }
 }
 

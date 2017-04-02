@@ -1,10 +1,18 @@
 import React, {Component, PropTypes} from 'react';
 
+import clipImage from 'universal/../images/clip.png';
+import clipImage2x from 'universal/../images/clip@2x.png';
+import clipImage3x from 'universal/../images/clip@3x.png';
+
+import trashIcon   from 'universal/../images/trash-icon-dark.png';
+import trashIcon2x from 'universal/../images/trash-icon-dark@2x.png';
+import trashIcon3x from 'universal/../images/trash-icon-dark@3x.png';
 
 import {
   container,
   composer,
-  sumbitButton
+  sumbitButton,
+  icon
 } from './thread-reply.less';
 
 class ThreadReply extends Component {
@@ -19,6 +27,8 @@ class ThreadReply extends Component {
         <form onSubmit={this._handleSubmit}>
           <textarea className={composer} name='reply' placeholder={'type your reply here...'} />
           <input className={sumbitButton} type='submit' />
+          <img src={trashIcon} srcSet={`${trashIcon2x} 2x, ${trashIcon3x} 3x`} className={icon} />
+          <img src={clipImage} srcSet={`${clipImage2x} 2x, ${clipImage3x} 3x`} className={icon} />
         </form>
       </div>
     );

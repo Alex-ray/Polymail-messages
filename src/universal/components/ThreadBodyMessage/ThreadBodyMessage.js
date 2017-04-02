@@ -1,6 +1,13 @@
+// Libraries
 import React, {Component, PropTypes} from 'react';
 import moment from 'moment';
 
+// Utils
+import {
+  getReciepients
+} from 'universal/utils/messages.js';
+
+// Styles
 import {
   threadHeader,
   threadFromType,
@@ -22,8 +29,7 @@ class ThreadBodyMessage extends Component {
       }
     } = this;
 
-    let reciepients = _messageReciepients(message.to);
-
+    let reciepients = getReciepients(message);
     let from = message.from.split(' ')[0];
 
     let today = moment(new Date());
@@ -42,17 +48,6 @@ class ThreadBodyMessage extends Component {
         <div className={threadBodyType} dangerouslySetInnerHTML={{__html: message.body}}></div>
       </section>
     );
-  }
-
-  _messageReciepients (to) {
-    let reciepients = [];
-
-    for (var i = 0; i < to.length; i++) {
-      let name = to[i].split(' ')[0];
-      reciepients.push(name);
-    }
-
-    return reciepients.join(', ');
   }
 }
 

@@ -20,7 +20,7 @@ class Layout extends Component {
         <Redirect to={{
           pathname: '/thread'
         }} />
-        <PrivateRouteContainer location={location} path='/thread/:id?' component={Routes.Inbox} />
+        <PrivateRouteContainer location={location} exact path='/thread/:id?' component={Routes.Inbox} />
         <Route exact location={location}  path='/login' component={Routes.Login} />
         <Route exact location={location} path='/logout' component={Routes.Logout} />
       </div>

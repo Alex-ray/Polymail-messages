@@ -59,6 +59,8 @@ export default {
   },
   module: {
     loaders: [
+      {test: /\.(png|j|jpeg|gif|svg|woff|woff2)$/, loader: 'url-loader?limit=10000'},
+      
       // Javascript
       {test: /\.js$/,
        loader: 'babel-loader',
