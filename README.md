@@ -66,8 +66,14 @@ The development environment uses Hot Module Reloading 3 and can be seen from
 ### Production
 Production can be run using `npm run build && npm run production` which will start a server on `localhost:8080`
 
+### Tests
+On account of misreading the api docs I went ahead and created a simple cookie authentication system using passport.js, which you can test by running
+`npm run test`
 
-## Stack
+Be sure to uncomment the `logout` route on line `56` in the `server/server.js` otherwise
+some of the test will fail : )
+
+#### Stack
 - Node.js
 - Express
 
@@ -78,7 +84,6 @@ Production can be run using `npm run build && npm run production` which will sta
 - Webpack 2
 - Home Module Reloader 3
 
-## tests
 - mocha
 - chai
 - chai-http
