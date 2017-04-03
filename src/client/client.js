@@ -3,7 +3,7 @@ import {render} from 'react-dom';
 import {AppContainer} from 'react-hot-loader';
 
 // Components
-import AppContainer from './containers/AppContainer.js';
+import {AppContainer as App} from './containers/AppContainer.js';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -16,7 +16,7 @@ const store = createStore(history);
 render(
   <AppContainer>
     <Provider store={store}>
-      <AppContainer history={history} />
+      <App history={history} />
     </Provider>
   </AppContainer>,
   document.getElementById('root')
