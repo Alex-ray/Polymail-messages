@@ -25,15 +25,24 @@
   padding: 6*@unit 10*@unit;
   color: @medium-gray;
   box-sizing: border-box;
-  transition: opacity 250ms ease-in;
+
+  transition: opacity 300ms ease-in-out, min-height 250ms ease-in-out;
 
   &:hover, &:focus {
     opacity: 1;
+    cursor: pointer;
   }
+
+   &:focus {
+     min-height: 15*@base;
+   }
 }
 
 .sumbitButton {
   &:extend(.primaryButton);
+  &:extend(.primaryButton:hover);
+  &:extend(.primaryButton:focus);
+  &:extend(.primaryButton:active);
   display: block;
   position: absolute;
   right: 0;

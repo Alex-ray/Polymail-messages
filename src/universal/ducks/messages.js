@@ -25,6 +25,7 @@ export default function reducer (state = initalState, action) {
     case MESSAGES_ADD_LIST:
       let newList = stateJS.messageList.concat(action.list);
       return state.merge({
+        fetching: false,
         messageList: newList
       });
     case MESSAGES_ADD_MESSAGE:

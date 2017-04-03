@@ -8,6 +8,6 @@ export const transitionNames = {
    enterActive: fadeEnterActive,
    leave: 'leave',
    leaveActive: 'leaveActive',
-   appear: 'appear',
-   appearActive: 'appearActive'
+   appear: fadeEnter,
+   appearActive: fadeEnterActive
 } ;

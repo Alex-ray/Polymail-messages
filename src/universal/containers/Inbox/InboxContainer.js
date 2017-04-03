@@ -3,8 +3,6 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {Route} from 'react-router';
 
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-
 // Components
 import Sidebar from 'universal/components/Sidebar/Sidebar.js';
 import * as Routes from 'universal/routes/index.js';
@@ -22,12 +20,11 @@ import {
 } from 'universal/styles/layout.less';
 
 
-import {transitionNames} from 'universal/animations/fade.js';
-
 @connect(mapStateToProps, mapDispatchToProps, mergeProps)
 class InboxContainer extends Component {
   static PropTypes = {
     messages: PropTypes.array.isRequired,
+    messagesLoading: PropTypes.bool.isRequired,
     fetchMessages: PropTypes.func.isRequired
   };
 
@@ -38,31 +35,29 @@ class InboxContainer extends Component {
   render () {
     const {
       messages,
-      location
+      location,
+      messagesLoading
      } = this.props;
 
     return (
       <section className={mainLayoutContainer}>
-        <Sidebar messages={messages} />
-        <ReactCSSTransitionGroup
-          className={mainLayout}
-          component={'div'}
-          transitionName={transitionNames}
-          transitionEnterTimeout={250}
-          transitionLeaveTimeout={0}
-        >
-          <Route location={location} key={location.key} exact path='/thread/:id' component={Routes.Thread} />
-        </ReactCSSTransitionGroup>
+        <Sidebar messages={messages} loading={messagesLoading}/>
+        <div className={mainLayout}>
+          <Route key={location.key} path='/thread/:id' component={Routes.Thread} exact />
+        </div>
       </section>
     );
   }
 }
 
 function mapStateToProps (state) {
-  let messages = state.messages.get('messages').toJS();
-  let list = state.messages.get('messageList').toJS();
+  let messages  = state.messages.get('messages').toJS();
+  let list      = state.messages.get('messageList').toJS();
+  let fetching  = state.messages.get('fetching');
+
   return {
     authToken: state.auth.get('token'),
+    messagesLoading: fetching,
     messages: buildMessageList(messages, list)
   };
 }

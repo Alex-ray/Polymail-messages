@@ -1,18 +1,22 @@
 .fadeEnter {
-  opacity: 0;
+  opacity: 0.25;
   z-index: 1;
 }
 
 .fadeEnter.fadeEnterActive {
   opacity: 1;
-  transition: opacity 250ms ease-in;
+  transition: opacity 300ms ease-in;
 }
 
-/* .leaveEnter {
-  opacity: 1;
-}
-
-.leaveEnter.leaveEnterActive {
+.loadingFadeEnter {
+  position: relative;
+  bottom: -800px;
   opacity: 0;
-  transition: opacity 250ms ease-out;
-}*/
+  z-index: 1;
+}
+
+.loadingFadeEnter.loadingFadeEnterActive {
+  bottom: 0px;
+  opacity: 1;
+  transition: bottom 700ms ease-in-out, opacity 800ms ease-in-out;
+}

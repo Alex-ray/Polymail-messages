@@ -1,9 +1,15 @@
 // Libraries
 import React, {Component, PropTypes} from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import Loading from 'react-loading';
 
 import ThreadHeader from 'universal/components/ThreadHeader/ThreadHeader.js';
 import ThreadBody   from 'universal/components/ThreadBody/ThreadBody.js';
 import ThreadReply  from 'universal/components/ThreadReply/ThreadReply.js';
+
+import {
+  transitionNames
+} from 'universal/animations/fade.js';
 
 import {
   loading
@@ -13,11 +19,6 @@ import {
   threadContainer
 } from 'universal/styles/layout.less';
 
-function Loading () {
-  return (
-    <h1 className={loading}>Loading...</h1>
-  );
-}
 
 class Thread extends Component {
   static propTypes = {
@@ -34,13 +35,23 @@ class Thread extends Component {
 
     const isLoading = message.id ? false : true;
 
+
     return (
         <section className={threadContainer}>
-          {isLoading && <Loading />}
+          {isLoading && <div className={loading}><Loading type='bubbles' color='#4a4a4a' /></div>}
           {!isLoading && (
             <div>
-              <ThreadHeader message={message} />
-              <ThreadBody message={message} />
+              <ReactCSSTransitionGroup
+                component={'div'}
+                transitionName={transitionNames}
+                transitionAppear={true}
+                transitionLeave={false}
+                transitionEnterTimeout={0}
+                transitionAppearTimeout={0}
+              >
+                <ThreadHeader message={message} />
+                <ThreadBody message={message} />
+              </ReactCSSTransitionGroup>
               <ThreadReply messageId={message.id} reply={reply} />
             </div>
           )}
