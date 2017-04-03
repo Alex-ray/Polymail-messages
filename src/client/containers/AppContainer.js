@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 // Components
 import Layout from 'universal/routes/Layout.js';
 
-class App extends Component {
+class AppContainer extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired
   }
@@ -28,4 +28,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default AppContainer;

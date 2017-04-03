@@ -3,9 +3,11 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {Route} from 'react-router';
 
+// Routes
+import * as Routes from 'universal/routes/index.js';
+
 // Components
 import Sidebar from 'universal/components/Sidebar/Sidebar.js';
-import * as Routes from 'universal/routes/index.js';
 
 // Actions
 import {
@@ -18,7 +20,6 @@ import {
   mainLayoutContainer,
   mainLayout
 } from 'universal/styles/layout.less';
-
 
 @connect(mapStateToProps, mapDispatchToProps, mergeProps)
 class InboxContainer extends Component {

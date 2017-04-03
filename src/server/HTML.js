@@ -34,14 +34,6 @@ class Html extends Component {
     let state = store.getState();
 
     const initialState = `window.__INITIAL_STATE__ = ${JSON.stringify(state)}`;
-
-    /**
-     * Provider: Makes the Redux store available to the connect() calls in the component hierarchy below.
-     * Normally, you can’t use connect() without wrapping the root component in <Provider>.
-     * see https://github.com/reactjs/react-redux/blob/master/docs/api.md#provider-store
-     *
-     **/
-
     const Layout =  PROD ? require( '../../build/prerender.js') : () => {};
 
     const root = PROD && renderToString(

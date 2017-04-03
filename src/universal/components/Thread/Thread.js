@@ -3,10 +3,12 @@ import React, {Component, PropTypes} from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Loading from 'react-loading';
 
+// Components
 import ThreadHeader from 'universal/components/ThreadHeader/ThreadHeader.js';
 import ThreadBody   from 'universal/components/ThreadBody/ThreadBody.js';
 import ThreadReply  from 'universal/components/ThreadReply/ThreadReply.js';
 
+// Styles
 import {
   transitionNames
 } from 'universal/animations/fade.js';

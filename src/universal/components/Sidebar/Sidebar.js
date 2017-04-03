@@ -53,11 +53,10 @@ class Sidebar extends Component {
             transitionName={transitionNames}
             transitionAppear={true}
             transitionLeave={false}
-            transitionAppearTimeout={800}
-          >
-            {!loading &&
-              <SidebarMessageList messages={messages} selected={params.id} />
-            }
+            transitionAppearTimeout={800}>
+              {!loading &&
+                <SidebarMessageList messages={messages} selected={params.id} />
+              }
           </ReactCSSTransitionGroup>
       </aside>
     );

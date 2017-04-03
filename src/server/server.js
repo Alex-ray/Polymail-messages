@@ -52,6 +52,7 @@ app.post('/login', passport.authenticate('local'),  function(req, res) {
       res.status(200).json({user: req.user});
 });
 
+// Be sure to uncomment this to run auth.js tests : )
 // app.get('/logout', function(req, res){
 //   req.logout();
 //   res.redirect('/');
@@ -62,13 +63,16 @@ if (PROD) {
   app.use('/static', express.static('build'));
 
   app.get('*', renderPage);
+
 // Development settings
 } else if (!PROD) {
+  // Mock API
   const jsonServer = require('json-server');
   const HMR = require('./hmr.js');
   const mockDataPath = path.join(__dirname, '../db/db.json');
   const MockServer = jsonServer.router(mockDataPath);
 
+  // Hot Module Reloading
   HMR(app);
 
   app.use('/api', (req, res, next) => {
