@@ -53,18 +53,32 @@ The challenge requirements seem vague, am I missing something?
 
 ## Alex J Ray
 
+### Prerequists
+Make sure you are on Node version `7` or greater and NPM version `4` or greater.
+
+### Installation
+To install dependencies run `npm install`
+
+### Development
+The development environment uses Hot Module Reloading 3 and can be seen from
+`localhost:8080` using the command `npm run development`
+
+### Production
+Production can be run using `npm run build && npm run production` which will start a server on `localhost:8080`
+
+
 ## Stack
 - Node.js
 - Express
 
 - React
 - React Router 4
+- Redux
 
 - Webpack 2
 - Home Module Reloader 3
 
 ## tests
-
 - mocha
 - chai
 - chai-http

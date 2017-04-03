@@ -15,7 +15,7 @@ const serverInclude = [server, universal];
 export default {
   context: src,
   entry: {
-    prerender: 'universal/routes/server.js'
+    prerender: './universal/routes/Layout.js'
   },
   target: 'node',
   output: {
@@ -44,24 +44,36 @@ export default {
     loaders: [
 
       {
-        test: /\.css$/,
+        test: /\.(png|j|jpeg|gif|svg|woff|woff2)$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 10000
+          }
+        }
+      },
+
+      {
+        test: /\.css|less$/,
         include: serverInclude,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: {
-            loader: 'css-loader',
-            options:  {
-              modules: true,
-              importLoaders: 1,
-              localIdentName: '[name]_[local]_[hash:base64:5]'
-            }
-          }
-        })
+          use: [
+            {loader: 'css-loader',
+             options: {
+               root: src,
+               modules: true,
+               importLoaders: 1,
+               localIdentName: '[path][name]-[local]'
+             }},
+             {loader: 'less-loader'},
+             {loader: 'postcss-loader'}
+          ]})
       },
 
       {
         test: /\.js$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         include: serverInclude
       }
 

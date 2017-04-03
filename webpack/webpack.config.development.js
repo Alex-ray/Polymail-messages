@@ -3,7 +3,6 @@ import webpack from 'webpack';
 import qs from 'querystring';
 
 import autoprefixer from 'autoprefixer';
-import cssNext from "postcss-cssnext";
 
 const root = process.cwd();
 const src  = path.join(root, 'src');
@@ -60,7 +59,7 @@ export default {
   module: {
     loaders: [
       {test: /\.(png|j|jpeg|gif|svg|woff|woff2)$/, loader: 'url-loader?limit=10000'},
-      
+
       // Javascript
       {test: /\.js$/,
        loader: 'babel-loader',
@@ -81,14 +80,7 @@ export default {
             localIdentName: '[path][name]-[local]'
           }},
           {loader: 'less-loader'},
-          {loader: 'postcss-loader',
-            options: {
-              plugins: function () {
-                return [
-                  autoprefixer
-                ];
-              }
-          }}
+          {loader: 'postcss-loader'}
        ]
       }
     ]

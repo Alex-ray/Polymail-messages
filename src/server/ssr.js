@@ -26,21 +26,24 @@ function renderApp(url, res, store, assets) {
       assets={assets} />
   );
 
-  if (context.url) {
-    res.writeHead(302, {
-      Location: context.url
-    });
-
-    res.end();
-  } else {
+  // if (context.url) {
+  //   console.log('context.url : ', context.url);
+  //   res.writeHead(302, {
+  //     Location: context.url
+  //   });
+  //
+  //   res.end();
+  // } else {
     res.send('<!DOCTYPE html>'+html);
-  }
+  // }
 }
 
 export const renderPage = (req, res) => {
   const history = createHistory( );
   const store  = createStore(history);
+
   const assets = require('../../build/assets.json');
+  // const routes = require('../../build/prerender.js');
 
   assets.manifest.text = fs.readFileSync(
     join(__dirname, '..', '..', 'build', basename(assets.manifest.js)),

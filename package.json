@@ -7,8 +7,9 @@
     "test": "NODE_PATH=./src mocha --timeout 10000",
     "development": "NODE_PATH=./src NODE_ENV=development node ./src/server/server.babel.js",
     "production": "NODE_PATH=./src NODE_ENV=production node ./src/server/server.babel.js",
-    "build": "npm run build:client",
-    "build:client": "NODE_ENV=production webpack --config ./webpack/client.babel.js"
+    "build": "NODE_PATH=./src npm run build:client && npm run build:server",
+    "build:client": "NODE_ENV=production webpack --config ./webpack/client.babel.js",
+    "build:server": "webpack --config ./webpack/server.babel.js"
   },
   "repository": {
     "type": "git",
