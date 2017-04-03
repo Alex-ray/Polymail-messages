@@ -53,6 +53,11 @@ The challenge requirements seem vague, am I missing something?
 
 ## Alex J Ray
 
+
+### Quickstart
+In the root directory of this project run
+`npm install && npm run build && npm run production`
+
 ### Prerequists
 Make sure you are on Node version `7` or greater and NPM version `4` or greater.
 
